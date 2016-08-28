@@ -1,2 +1,2 @@
 install:
- - tools\nuget.exe "restore" "./src/Serilog.Exceptions.Tests.sln"
+ - build.bat
