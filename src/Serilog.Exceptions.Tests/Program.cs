@@ -9,24 +9,20 @@ namespace Serilog.Exceptions.Tests
         {
             try
             {
-                Console.WriteLine("Test1: instanciate default destructurers");
-                IExceptionDestructurer[] DefaultDestructurers =
-                {
-                    new ExceptionDestructurer(),
-                    new ArgumentExceptionDestructurer(),
-                    new ArgumentOutOfRangeExceptionDestructurer(),
-                    new AggregateExceptionDestructurer(),
-                    new ReflectionTypeLoadExceptionDestructurer(),
-                    new SqlExceptionDestructurer()
-                };
-
-                Console.WriteLine("Test2: instanciate logger");
-                new LoggerConfiguration().Enrich.WithExceptionDetails().CreateLogger();
+                LoadTargetTypes(TestExceptionDestructurer());
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex);
                 Environment.Exit(1);
+            }
+        }
+
+        private static void LoadTargetTypes(ExceptionDestructurer destructurer)
+        {
+            foreach (var targetType in destructurer.TargetTypes)
+            {
+                Console.WriteLine(targetType);
             }
         }
 
