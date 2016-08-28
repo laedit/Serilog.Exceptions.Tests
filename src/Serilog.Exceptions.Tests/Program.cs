@@ -1,4 +1,5 @@
 ﻿using Serilog.Exceptions.Destructurers;
+using System;
 
 namespace Serilog.Exceptions.Tests
 {
@@ -6,15 +7,27 @@ namespace Serilog.Exceptions.Tests
     {
         static void Main()
         {
-            IExceptionDestructurer[] DefaultDestructurers =
+            try
             {
-                new ExceptionDestructurer(),
-                new ArgumentExceptionDestructurer(),
-                new ArgumentOutOfRangeExceptionDestructurer(),
-                new AggregateExceptionDestructurer(),
-                new ReflectionTypeLoadExceptionDestructurer(),
-                new SqlExceptionDestructurer()
-            };
+                Console.WriteLine("Test1: instanciate default destructurers");
+                IExceptionDestructurer[] DefaultDestructurers =
+                {
+                    new ExceptionDestructurer(),
+                    new ArgumentExceptionDestructurer(),
+                    new ArgumentOutOfRangeExceptionDestructurer(),
+                    new AggregateExceptionDestructurer(),
+                    new ReflectionTypeLoadExceptionDestructurer(),
+                    new SqlExceptionDestructurer()
+                };
+
+                Console.WriteLine("Test2: instanciate logger");
+                new LoggerConfiguration().Enrich.WithExceptionDetails().CreateLogger();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+                Environment.Exit(1);
+            }
         }
 
         private static ExceptionDestructurer TestExceptionDestructurer()
