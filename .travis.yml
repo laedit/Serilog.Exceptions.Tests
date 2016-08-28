@@ -1,0 +1,7 @@
+language: csharp
+
+solution: src/Serilog.Exceptions.Tests.sln
+
+script:
+  - xbuild /p:Configuration=Release src/Serilog.Exceptions.Tests.sln
+  - mono ./src/Serilog.Exceptions.Tests/bin/Release/Serilog.Exceptions.Tests.exe

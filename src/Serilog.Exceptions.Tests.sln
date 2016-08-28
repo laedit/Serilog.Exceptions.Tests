@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serilog.Exceptions.Tests", "Serilog.Exceptions.Tests\Serilog.Exceptions.Tests.csproj", "{CE4E732F-5F75-4789-808C-129665A44019}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{5416A37A-A91F-4B93-A3F8-2ECAB283528D}"
+	ProjectSection(SolutionItems) = preProject
+		..\.travis.yml = ..\.travis.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE4E732F-5F75-4789-808C-129665A44019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE4E732F-5F75-4789-808C-129665A44019}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE4E732F-5F75-4789-808C-129665A44019}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE4E732F-5F75-4789-808C-129665A44019}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
