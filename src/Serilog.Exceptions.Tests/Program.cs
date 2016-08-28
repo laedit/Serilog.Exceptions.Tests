@@ -28,7 +28,11 @@ namespace Serilog.Exceptions.Tests
                 foreach (var targetType in destructurer.Value)
                 {
                     Console.WriteLine(targetType);
-                    Type.GetType(targetType);
+                    var type = Type.GetType(targetType);
+                    if (type == null)
+                    {
+                        Console.WriteLine("not loaded");
+                    }
                 }
 
                 Console.WriteLine();
@@ -40,11 +44,11 @@ namespace Serilog.Exceptions.Tests
             return new Dictionary<string, string[]>
             {
                 { "ExceptionDestructurer", GetExceptionDestructurerTargetTypes()},
-                { "ArgumentExceptionDestructurer", new[] { "ArgumentException", "ArgumentNullException" } },
-                { "ArgumentOutOfRangeExceptionDestructurer", new[] { "ArgumentOutOfRangeException" } },
-                {"AggregateExceptionDestructurer", new[] { "AggregateException" } },
-                { "ReflectionTypeLoadExceptionDestructurer", new[] { "ReflectionTypeLoadException" } },
-                { "SqlExceptionDestructurer", new[] { "SqlException" } }
+                { "ArgumentExceptionDestructurer", new[] { "System.ArgumentException", "System.ArgumentNullException" } },
+                { "ArgumentOutOfRangeExceptionDestructurer", new[] { "System.ArgumentOutOfRangeException" } },
+                {"AggregateExceptionDestructurer", new[] { "System.AggregateException" } },
+                { "ReflectionTypeLoadExceptionDestructurer", new[] { "System.Reflection.ReflectionTypeLoadException" } },
+                { "SqlExceptionDestructurer", new[] { "System.Data.SqlClient.SqlException, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" } }
             };
         }
 
@@ -52,9 +56,9 @@ namespace Serilog.Exceptions.Tests
         {
             return new[]
             {
-            "Microsoft.CSharp.RuntimeBinder.RuntimeBinderException",
-            "Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException",
-            "Microsoft.SqlServer.Server.InvalidUdtException",
+            "Microsoft.CSharp.RuntimeBinder.RuntimeBinderException, Microsoft.CSharp, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+            "Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException, Microsoft.CSharp, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+            "Microsoft.SqlServer.Server.InvalidUdtException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
             "System.AccessViolationException",
             "System.AppDomainUnloadedException",
             "System.ApplicationException",
@@ -62,40 +66,40 @@ namespace Serilog.Exceptions.Tests
             "System.ArrayTypeMismatchException",
             "System.CannotUnloadAppDomainException",
             "System.Collections.Generic.KeyNotFoundException",
-            "System.ComponentModel.Design.CheckoutException",
-            "System.ComponentModel.InvalidAsynchronousStateException",
-            "System.ComponentModel.InvalidEnumArgumentException",
-            "System.Configuration.SettingsPropertyIsReadOnlyException",
-            "System.Configuration.SettingsPropertyNotFoundException",
-            "System.Configuration.SettingsPropertyWrongTypeException",
+            "System.ComponentModel.Design.CheckoutException, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.ComponentModel.InvalidAsynchronousStateException, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.ComponentModel.InvalidEnumArgumentException, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Configuration.SettingsPropertyIsReadOnlyException, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Configuration.SettingsPropertyNotFoundException, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Configuration.SettingsPropertyWrongTypeException, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
             "System.ContextMarshalException",
-            "System.Data.Common.DbException",
-            "System.Data.ConstraintException",
-            "System.Data.DataException",
-            "System.Data.DeletedRowInaccessibleException",
-            "System.Data.DuplicateNameException",
-            "System.Data.EvaluateException",
-            "System.Data.InRowChangingEventException",
-            "System.Data.InvalidConstraintException",
-            "System.Data.InvalidExpressionException",
-            "System.Data.MissingPrimaryKeyException",
-            "System.Data.NoNullAllowedException",
-            "System.Data.OperationAbortedException",
-            "System.Data.ReadOnlyException",
-            "System.Data.RowNotInTableException",
-            "System.Data.SqlTypes.SqlAlreadyFilledException",
-            "System.Data.SqlTypes.SqlNotFilledException",
-            "System.Data.SqlTypes.SqlNullValueException",
-            "System.Data.SqlTypes.SqlTruncateException",
-            "System.Data.SqlTypes.SqlTypeException",
-            "System.Data.StrongTypingException",
-            "System.Data.SyntaxErrorException",
-            "System.Data.VersionNotFoundException",
+            "System.Data.Common.DbException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.ConstraintException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.DataException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.DeletedRowInaccessibleException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.DuplicateNameException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.EvaluateException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.InRowChangingEventException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.InvalidConstraintException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.InvalidExpressionException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.MissingPrimaryKeyException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.NoNullAllowedException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.OperationAbortedException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.ReadOnlyException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.RowNotInTableException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.SqlTypes.SqlAlreadyFilledException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.SqlTypes.SqlNotFilledException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.SqlTypes.SqlNullValueException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.SqlTypes.SqlTruncateException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.SqlTypes.SqlTypeException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.StrongTypingException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.SyntaxErrorException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Data.VersionNotFoundException, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
             "System.DataMisalignedException",
-            "System.Diagnostics.Eventing.Reader.EventLogInvalidDataException",
-            "System.Diagnostics.Eventing.Reader.EventLogNotFoundException",
-            "System.Diagnostics.Eventing.Reader.EventLogProviderDisabledException",
-            "System.Diagnostics.Eventing.Reader.EventLogReadingException",
+            "System.Diagnostics.Eventing.Reader.EventLogInvalidDataException, System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Diagnostics.Eventing.Reader.EventLogNotFoundException, System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Diagnostics.Eventing.Reader.EventLogProviderDisabledException, System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Diagnostics.Eventing.Reader.EventLogReadingException, System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
             "System.Diagnostics.Tracing.EventSourceException",
             "System.DivideByZeroException",
             "System.DllNotFoundException",
@@ -114,20 +118,20 @@ namespace Serilog.Exceptions.Tests
             "System.IO.DirectoryNotFoundException",
             "System.IO.DriveNotFoundException",
             "System.IO.EndOfStreamException",
-            "System.IO.InternalBufferOverflowException",
-            "System.IO.InvalidDataException",
+            "System.IO.InternalBufferOverflowException, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.IO.InvalidDataException, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
             "System.IO.IOException",
             "System.IO.IsolatedStorage.IsolatedStorageException",
             "System.IO.PathTooLongException",
-            "System.Management.Instrumentation.InstanceNotFoundException",
-            "System.Management.Instrumentation.InstrumentationBaseException",
-            "System.Management.Instrumentation.InstrumentationException",
+            "System.Management.Instrumentation.InstanceNotFoundException, System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Management.Instrumentation.InstrumentationBaseException, System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Management.Instrumentation.InstrumentationException, System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
             "System.MemberAccessException",
             "System.MethodAccessException",
             "System.MulticastNotSupportedException",
-            "System.Net.CookieException",
-            "System.Net.NetworkInformation.PingException",
-            "System.Net.ProtocolViolationException",
+            "System.Net.CookieException, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Net.NetworkInformation.PingException, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Net.ProtocolViolationException, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
             "System.NotImplementedException",
             "System.NotSupportedException",
             "System.NullReferenceException",
@@ -153,8 +157,8 @@ namespace Serilog.Exceptions.Tests
             "System.Runtime.Remoting.RemotingTimeoutException",
             "System.Runtime.Remoting.ServerException",
             "System.Runtime.Serialization.SerializationException",
-            "System.Security.Authentication.AuthenticationException",
-            "System.Security.Authentication.InvalidCredentialException",
+            "System.Security.Authentication.AuthenticationException, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "System.Security.Authentication.InvalidCredentialException, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
             "System.Security.Cryptography.CryptographicException",
             "System.Security.Cryptography.CryptographicUnexpectedOperationException",
             "System.Security.Policy.PolicyException",
@@ -162,7 +166,7 @@ namespace Serilog.Exceptions.Tests
             "System.Security.XmlSyntaxException",
             "System.StackOverflowException",
             "System.SystemException",
-            "System.Threading.BarrierPostPhaseException",
+            "System.Threading.BarrierPostPhaseException, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
             "System.Threading.LockRecursionException",
             "System.Threading.SemaphoreFullException",
             "System.Threading.SynchronizationLockException",
@@ -176,7 +180,7 @@ namespace Serilog.Exceptions.Tests
             "System.TypeAccessException",
             "System.TypeUnloadedException",
             "System.UnauthorizedAccessException",
-            "System.UriFormatException"
+            "System.UriFormatException, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
         };
         }
     }
