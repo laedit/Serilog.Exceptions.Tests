@@ -1,5 +1,6 @@
 ﻿using Serilog.Exceptions.Destructurers;
 using System;
+using System.Collections.Generic;
 
 namespace Serilog.Exceptions.Tests
 {
@@ -20,14 +21,34 @@ namespace Serilog.Exceptions.Tests
 
         private static void LoadTargetTypes()
         {
-            foreach (var targetType in GetTargetTypes())
+            foreach (var destructurer in GetDestructurers())
             {
-                Console.WriteLine(targetType);
-                Type.GetType(targetType);
+                Console.WriteLine(destructurer.Key);
+
+                foreach (var targetType in destructurer.Value)
+                {
+                    Console.WriteLine(targetType);
+                    Type.GetType(targetType);
+                }
+
+                Console.WriteLine();
             }
         }
 
-        private static string[] GetTargetTypes()
+        private static Dictionary<string, string[]> GetDestructurers()
+        {
+            return new Dictionary<string, string[]>
+            {
+                { "ExceptionDestructurer", GetExceptionDestructurerTargetTypes()},
+                { "ArgumentExceptionDestructurer", new[] { "ArgumentException", "ArgumentNullException" } },
+                { "ArgumentOutOfRangeExceptionDestructurer", new[] { "ArgumentOutOfRangeException" } },
+                {"AggregateExceptionDestructurer", new[] { "AggregateException" } },
+                { "ReflectionTypeLoadExceptionDestructurer", new[] { "ReflectionTypeLoadException" } },
+                { "SqlExceptionDestructurer", new[] { "SqlException" } }
+            };
+        }
+
+        private static string[] GetExceptionDestructurerTargetTypes()
         {
             return new[]
             {
