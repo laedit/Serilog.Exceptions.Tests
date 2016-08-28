@@ -6,12 +6,15 @@ namespace Serilog.Exceptions.Tests
     {
         static void Main()
         {
-            TestExceptionDestructurer();
-            TestArgumentExceptionDestructurer();
-            TestArgumentOutOfRangeExceptionDestructurer();
-            TestAggregateExceptionDestructurer();
-            TestReflectionTypeLoadExceptionDestructurer();
-            TestSqlExceptionDestructurer();
+            IExceptionDestructurer[] DefaultDestructurers =
+            {
+                new ExceptionDestructurer(),
+                new ArgumentExceptionDestructurer(),
+                new ArgumentOutOfRangeExceptionDestructurer(),
+                new AggregateExceptionDestructurer(),
+                new ReflectionTypeLoadExceptionDestructurer(),
+                new SqlExceptionDestructurer()
+            };
         }
 
         private static ExceptionDestructurer TestExceptionDestructurer()
