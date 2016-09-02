@@ -10,7 +10,7 @@ namespace Serilog.Exceptions.Tests
         {
             try
             {
-                LoadTargetTypes();
+                new LoggerConfiguration().Enrich.WithExceptionDetails().CreateLogger();
             }
             catch (Exception ex)
             {
@@ -226,10 +226,10 @@ namespace Serilog.Exceptions.Tests
                         typeof(System.Data.SyntaxErrorException),
                         typeof(System.Data.VersionNotFoundException),
                         typeof(System.DataMisalignedException),
-                        typeof(System.Diagnostics.Eventing.Reader.EventLogInvalidDataException),
-                        typeof(System.Diagnostics.Eventing.Reader.EventLogNotFoundException),
-                        typeof(System.Diagnostics.Eventing.Reader.EventLogProviderDisabledException),
-                        typeof(System.Diagnostics.Eventing.Reader.EventLogReadingException),
+                        //typeof(System.Diagnostics.Eventing.Reader.EventLogInvalidDataException),
+                        //typeof(System.Diagnostics.Eventing.Reader.EventLogNotFoundException),
+                        //typeof(System.Diagnostics.Eventing.Reader.EventLogProviderDisabledException),
+                        //typeof(System.Diagnostics.Eventing.Reader.EventLogReadingException),
                         typeof(System.Diagnostics.Tracing.EventSourceException),
                         typeof(System.DivideByZeroException),
                         typeof(System.DllNotFoundException),
@@ -253,9 +253,9 @@ namespace Serilog.Exceptions.Tests
                         typeof(System.IO.IOException),
                         typeof(System.IO.IsolatedStorage.IsolatedStorageException),
                         typeof(System.IO.PathTooLongException),
-                        typeof(System.Management.Instrumentation.InstanceNotFoundException),
-                        typeof(System.Management.Instrumentation.InstrumentationBaseException),
-                        typeof(System.Management.Instrumentation.InstrumentationException),
+                        //typeof(System.Management.Instrumentation.InstanceNotFoundException),
+                        //typeof(System.Management.Instrumentation.InstrumentationBaseException),
+                        //typeof(System.Management.Instrumentation.InstrumentationException),
                         typeof(System.MemberAccessException),
                         typeof(System.MethodAccessException),
                         typeof(System.MulticastNotSupportedException),
