@@ -43,7 +43,7 @@ namespace Serilog.Exceptions.Tests
         {
             return new Dictionary<string, string[]>
             {
-                { "ExceptionDestructurer", GetExceptionDestructurerTargetTypes()},
+                { "ExceptionDestructurer", GetExceptionDestructurerTargetTypes() },
                 { "ArgumentExceptionDestructurer", new[] { "System.ArgumentException", "System.ArgumentNullException" } },
                 { "ArgumentOutOfRangeExceptionDestructurer", new[] { "System.ArgumentOutOfRangeException" } },
                 {"AggregateExceptionDestructurer", new[] { "System.AggregateException" } },
